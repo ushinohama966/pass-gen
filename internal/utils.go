@@ -26,10 +26,10 @@ func letterJoin(letters ...[]byte) []byte {
 
 func generatePass() string {
 	letters := letterJoin(
-		uppercaseCharacters,
-		lowercaseCharacters,
-		numberCharacters,
-		specialCharacters,
+		getUppercaseCharacters(),
+		getLowercaseCharacters(),
+		getNumberCharacters(),
+		getSpecialCharacters(),
 	)
 	pass := make([]byte, 0, defaultPassLength)
 	for range defaultPassLength {

@@ -1,0 +1,22 @@
+linters:
+  # Disable all linters.
+  # Default: false
+  # disable-all: true
+  enable-all: true
+  disable:
+    - golint
+    - exhaustivestruct
+    - varcheck
+    - maligned
+    - structcheck
+    - ifshort
+    - interfacer
+    - scopelint
+    - deadcode
+    - nosnakecase
+    - gochecknoinits
+    - godot
+    - depguard
+    - exhaustruct
+    - wsl
+    - gochecknoglobals

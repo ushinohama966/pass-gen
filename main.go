@@ -1,6 +1,5 @@
 /*
 Copyright © 2024 NAME HERE ushinohama966@gmail.com
-
 */
 package main
 
