@@ -5,10 +5,6 @@ import (
 	"math/big"
 )
 
-const (
-	defaultPassLength = 12
-)
-
 func generateChar(letters []byte) byte {
 	n, _ := rand.Int(rand.Reader, big.NewInt(int64(len(letters))))
 
@@ -24,15 +20,15 @@ func letterJoin(letters ...[]byte) []byte {
 	return letter
 }
 
-func generatePass() string {
+func generatePass(length uint16) string {
 	letters := letterJoin(
 		getUppercaseCharacters(),
 		getLowercaseCharacters(),
 		getNumberCharacters(),
 		getSpecialCharacters(),
 	)
-	pass := make([]byte, 0, defaultPassLength)
-	for range defaultPassLength {
+	pass := make([]byte, 0, length)
+	for range length {
 		pass = append(pass, generateChar(letters))
 	}
 

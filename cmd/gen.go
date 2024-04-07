@@ -4,8 +4,15 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"strconv"
+
 	"github.com/spf13/cobra"
 	"github.com/ushinohama966/pass-gen/internal"
+)
+
+const (
+	characterLengthFlag        = "length"
+	defaultPassLength   uint16 = 12
 )
 
 // genCmd represents the gen command
@@ -13,8 +20,11 @@ var genCmd = &cobra.Command{
 	Use:   "gen",
 	Short: "generate password",
 	Long:  `generate password`,
-	Run: func(_ *cobra.Command, _ []string) {
-		internal.Gen()
+	Run: func(cmd *cobra.Command, _ []string) {
+		lengthString := cmd.Flag(characterLengthFlag).Value.String()
+		n, _ := strconv.Atoi(lengthString)
+
+		internal.Gen(uint16(n))
 	},
 }
 
@@ -25,7 +35,8 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// genCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// genCmd.PersistentFlags().Uint16("length", defaultPassLength, "specify password length")
+	genCmd.PersistentFlags().Uint16P(characterLengthFlag, "l", defaultPassLength, "specify password length")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
