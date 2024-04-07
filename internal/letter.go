@@ -1,7 +1,7 @@
 package internal
 
-var (
-	uppercaseCharacters = []byte{
+func getUppercaseCharacters() []byte {
+	uppercaseCharacters := []byte{
 		'A',
 		'B',
 		'C',
@@ -29,7 +29,12 @@ var (
 		'Y',
 		'Z',
 	}
-	lowercaseCharacters = []byte{
+
+	return uppercaseCharacters
+}
+
+func getLowercaseCharacters() []byte {
+	lowercaseCharacters := []byte{
 		'a',
 		'b',
 		'c',
@@ -57,7 +62,12 @@ var (
 		'y',
 		'z',
 	}
-	numberCharacters = []byte{
+
+	return lowercaseCharacters
+}
+
+func getNumberCharacters() []byte {
+	numberCharacters := []byte{
 		'0',
 		'1',
 		'2',
@@ -69,7 +79,12 @@ var (
 		'8',
 		'9',
 	}
-	specialCharacters = []byte{
+
+	return numberCharacters
+}
+
+func getSpecialCharacters() []byte {
+	specialCharacters := []byte{
 		'-',
 		'/',
 		'*',
@@ -86,4 +101,6 @@ var (
 		'~',
 		'|',
 	}
-)
+
+	return specialCharacters
+}

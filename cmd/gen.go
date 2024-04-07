@@ -12,8 +12,8 @@ import (
 var genCmd = &cobra.Command{
 	Use:   "gen",
 	Short: "generate password",
-	Long: `generate password`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Long:  `generate password`,
+	Run: func(_ *cobra.Command, _ []string) {
 		internal.Gen()
 	},
 }

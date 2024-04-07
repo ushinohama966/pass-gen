@@ -1,2 +1,8 @@
-cmd-add:
-	cobra-cli add $1
+all: fmt lint test
+
+lint:
+	golangci-lint run
+fmt:
+	go fmt ./...
+test:
+	go test ./...
