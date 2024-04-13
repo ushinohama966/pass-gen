@@ -10,6 +10,7 @@ cli tool that generates password
 ### detail features
 
 - [x] specify length
+- [x] exclude special character
 - [ ] specify character type
 - [ ] specify special characters
 - [ ] show password strength

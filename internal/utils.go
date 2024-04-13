@@ -20,13 +20,15 @@ func letterJoin(letters ...[]byte) []byte {
 	return letter
 }
 
-func generatePass(length uint16) string {
+func generatePass(length uint16, excludeSpecialChar bool) string {
 	letters := letterJoin(
 		getUppercaseCharacters(),
 		getLowercaseCharacters(),
 		getNumberCharacters(),
-		getSpecialCharacters(),
 	)
+	if !excludeSpecialChar {
+		letters = append(letters, getSpecialCharacters()...)
+	}
 	pass := make([]byte, 0, length)
 	for range length {
 		pass = append(pass, generateChar(letters))
