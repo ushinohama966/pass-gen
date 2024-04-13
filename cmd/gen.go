@@ -11,8 +11,10 @@ import (
 )
 
 const (
-	characterLengthFlag        = "length"
-	defaultPassLength   uint16 = 12
+	characterLengthFlag              = "length"
+	excludeSpecialCharFlag           = "exclude-special-character"
+	defaultPassLength         uint16 = 12
+	defaultExcludeSpecialChar        = false
 )
 
 // genCmd represents the gen command
@@ -24,7 +26,9 @@ var genCmd = &cobra.Command{
 		lengthString := cmd.Flag(characterLengthFlag).Value.String()
 		n, _ := strconv.Atoi(lengthString)
 
-		internal.Gen(uint16(n))
+		exclude, _ := strconv.ParseBool(cmd.Flag(excludeSpecialCharFlag).Value.String())
+
+		internal.Gen(uint16(n), exclude)
 	},
 }
 
@@ -36,7 +40,19 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	// genCmd.PersistentFlags().Uint16("length", defaultPassLength, "specify password length")
-	genCmd.PersistentFlags().Uint16P(characterLengthFlag, "l", defaultPassLength, "specify password length")
+	genCmd.PersistentFlags().Uint16P(
+		characterLengthFlag,
+		"l",
+		defaultPassLength,
+		"specify password length",
+	)
+	genCmd.PersistentFlags().BoolP(
+		excludeSpecialCharFlag,
+		"e",
+		defaultExcludeSpecialChar,
+		"exclude special characters",
+	)
+	genCmd.PersistentFlags().Lookup(excludeSpecialCharFlag).NoOptDefVal = "true"
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
